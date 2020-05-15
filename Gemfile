@@ -33,6 +33,9 @@ gem 'simple_form'
 # gem added to avoid sharing secret on github
 gem 'dotenv-rails', groups: [:development, :test]
 
+# cloundinary install
+gem 'cloudinary', '~> 1.12.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

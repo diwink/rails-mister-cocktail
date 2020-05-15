@@ -20,24 +20,20 @@ require 'open-uri'
 require 'json'
 
 puts "Destroy doses"
-
 Dose.destroy_all if Rails.env.development?
 puts "Destroy ingredients"
-
 Ingredient.destroy_all if Rails.env.development?
 puts "Destroy Cocktails"
 
 Cocktail.destroy_all if Rails.env.development?
-
 url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
 ingredients = JSON.parse(open(url).read)
 ingredients['drinks'].each { |ingredient| Ingredient.create(name: ingredient.values[0]) }
 
 url_cocktail = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail"
 cocktails = JSON.parse(open(url_cocktail).read)
-
 cocktails['drinks'].each do |cocktail|
-  @cocktail = Cocktail.create(name: cocktail['strDrink'])
+  @cocktail = Cocktail.create(name: cocktail['strDrink'], photo: cocktail['strDrinkThumb'])
   url_doses = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=#{cocktail['idDrink']}"
   doses = JSON.parse(open(url_doses).read)
   doses['drinks'].each do |dose|
@@ -52,4 +48,5 @@ cocktails['drinks'].each do |cocktail|
     end
   end
 end
+
 puts "all good!"
