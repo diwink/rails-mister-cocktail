@@ -1,7 +1,9 @@
 <div class="container">
+  <img src="app/images/dirty-dick.jpg" alt="test">
+  <%= image_tag "dirty-dick.jpg" %>
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h1>Greatest Coctkails</h1>
+      <h1>Skip the menu</h1>
        <%= link_to "Add a new cocktail", new_cocktail_path, class: 'btn btn-primary' %>
       <ul class="list-group">
         <% @cocktails.each do |cocktail| %>

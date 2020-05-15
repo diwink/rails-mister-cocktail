@@ -30,11 +30,17 @@ url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
 ingredients = JSON.parse(open(url).read)
 ingredients['drinks'].each { |ingredient| Ingredient.create(name: ingredient.values[0]) }
 
+
+#file = URI.open('https://giantbomb1.cbsistatic.com/uploads/original/9/99864/2419866-nes_console_set.png')
+
 url_cocktail = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail"
 cocktails = JSON.parse(open(url_cocktail).read)
+
 cocktails['drinks'].each do |cocktail|
-  @cocktail = Cocktail.create(name: cocktail['strDrink'], photo: cocktail['strDrinkThumb'])
+
+  @cocktail = Cocktail.create(name: cocktail['strDrink'])
   url_doses = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=#{cocktail['idDrink']}"
+
   doses = JSON.parse(open(url_doses).read)
   doses['drinks'].each do |dose|
     i = 1
